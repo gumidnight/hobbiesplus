@@ -16,6 +16,13 @@ export async function GET() {
     
     const db = env.DB;
 
+    // Check if DB is available
+    if (!db) {
+      console.error('DB binding not available in local development.');
+      // Return empty array for local dev
+      return Response.json({ registrations: [] });
+    }
+
     const { results } = await db
       .prepare(
         "SELECT id, email, name, created_at, ip, user_agent FROM registrations ORDER BY created_at DESC"

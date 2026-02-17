@@ -22,6 +22,22 @@ export async function POST(request: Request) {
     
     const db = env.DB;
 
+    // Check if DB is available
+    if (!db) {
+      console.error('DB binding not available in local development.');
+      console.error('To test registration locally, you need to:');
+      console.error('1. Create local D1 database: wrangler d1 create hobbies-plus-local');
+      console.error('2. Update wrangler.toml with local database binding');
+      console.error('3. Run migrations: wrangler d1 migrations apply hobbies-plus-local --local');
+      console.error('OR test the registration feature on production: https://hobbiesplus.pages.dev');
+      
+      // For local dev convenience, just return success without saving
+      return Response.json(
+        { message: "You're on the list! (Local dev mode - not actually saved)" },
+        { status: 201 }
+      );
+    }
+
     // Parse request body
     let body: RegisterBody;
     try {
