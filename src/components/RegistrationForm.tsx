@@ -45,8 +45,8 @@ export default function RegistrationForm() {
         <div className="glass glow-sm inline-flex items-center gap-3 rounded-2xl px-8 py-6">
           <span className="text-3xl">🎉</span>
           <div className="text-left">
-            <p className="text-lg font-semibold text-white">{message}</p>
-            <p className="mt-1 text-sm text-brand-300">
+            <p className="text-lg font-semibold text-gray-900">{message}</p>
+            <p className="mt-1 text-sm text-brand-700">
               We&apos;ll notify you when beta launches.
             </p>
           </div>
@@ -63,9 +63,9 @@ export default function RegistrationForm() {
           placeholder="Your name (optional)"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white
-                     placeholder-gray-400 backdrop-blur-sm transition-all duration-300
-                     focus:border-brand-400/50 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+          className="w-full rounded-xl border border-gray-200 bg-white px-5 py-3.5 text-gray-900
+                     placeholder-gray-700 backdrop-blur-sm transition-all duration-300
+                     focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
         />
         <input
           type="email"
@@ -73,18 +73,18 @@ export default function RegistrationForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white
-                     placeholder-gray-400 backdrop-blur-sm transition-all duration-300
-                     focus:border-brand-400/50 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+          className="w-full rounded-xl border border-gray-200 bg-white px-5 py-3.5 text-gray-900
+                     placeholder-gray-700 backdrop-blur-sm transition-all duration-300
+                     focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
         />
       </div>
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 to-purple-600
+        className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 to-brand-500
                    px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300
-                   hover:from-brand-500 hover:to-purple-500 hover:shadow-brand-500/25
+                   hover:from-brand-500 hover:to-brand-400 hover:shadow-brand-500/25
                    disabled:cursor-not-allowed disabled:opacity-60"
       >
         <span className="relative z-10 flex items-center justify-center gap-2">
@@ -135,12 +135,12 @@ export default function RegistrationForm() {
       </button>
 
       {status === "error" && (
-        <p className="animate-fade-in text-center text-sm text-red-400">
+        <p className="animate-fade-in text-center text-sm text-red-600">
           {message}
         </p>
       )}
 
-      <p className="text-center text-xs text-gray-500">
+      <p className="text-center text-xs text-gray-600">
         No spam, ever. Unsubscribe anytime.
       </p>
     </form>
