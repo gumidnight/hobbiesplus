@@ -1,10 +1,20 @@
 # Cloudflare Pages Deployment Script
 # Run this to build and deploy your app
+#
+# Prerequisites:
+#   Set your API token as an environment variable BEFORE running:
+#     $env:CLOUDFLARE_API_TOKEN = "your-token-here"
+#   Or use: wrangler login (interactive browser auth)
 
 Write-Host "🚀 Starting Cloudflare Pages Deployment..." -ForegroundColor Cyan
 
-# Set API Token
-$env:CLOUDFLARE_API_TOKEN = "REVOKED"
+# Verify API token is set
+if (-not $env:CLOUDFLARE_API_TOKEN) {
+    Write-Host "❌ CLOUDFLARE_API_TOKEN environment variable is not set." -ForegroundColor Red
+    Write-Host "   Set it with: `$env:CLOUDFLARE_API_TOKEN = 'your-token'`" -ForegroundColor Yellow
+    Write-Host "   Or run: npx wrangler login" -ForegroundColor Yellow
+    exit 1
+}
 
 # Step 1: Build
 Write-Host "`n📦 Building Next.js app for Cloudflare Pages..." -ForegroundColor Yellow
