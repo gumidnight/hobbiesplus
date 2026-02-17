@@ -4,7 +4,16 @@ export const runtime = "edge";
 
 export async function GET() {
   try {
-    const { env } = getRequestContext();
+    // Try to get Cloudflare env, fallback to process.env for local dev
+    let env;
+    try {
+      const context = getRequestContext();
+      env = context.env;
+    } catch {
+      // Local development fallback
+      env = process.env as any;
+    }
+    
     const db = env.DB;
 
     const { results } = await db

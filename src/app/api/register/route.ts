@@ -10,7 +10,16 @@ interface RegisterBody {
 
 export async function POST(request: Request) {
   try {
-    const { env } = getRequestContext();
+    // Try to get Cloudflare env, fallback to process.env for local dev
+    let env;
+    try {
+      const context = getRequestContext();
+      env = context.env;
+    } catch {
+      // Local development fallback
+      env = process.env as any;
+    }
+    
     const db = env.DB;
 
     // Parse request body

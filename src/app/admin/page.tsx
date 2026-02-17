@@ -72,23 +72,23 @@ export default function AdminDashboard() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gray-50">
       {/* Background */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-brand-600/10 blur-[120px]" />
-        <div className="absolute -right-40 top-1/2 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-[120px]" />
+        <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-gray-400/15 blur-[120px]" />
+        <div className="absolute -right-40 top-1/2 h-[400px] w-[400px] rounded-full bg-gray-300/12 blur-[120px]" />
       </div>
 
       {/* Header */}
-      <header className="relative z-10 border-b border-white/5">
+      <header className="relative z-10 border-b border-gray-200">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-purple-600 text-sm font-bold text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 text-sm font-bold text-white shadow-lg shadow-brand-500/25">
               H+
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white">Admin Dashboard</h1>
-              <p className="text-xs text-gray-500">
+              <h1 className="text-lg font-bold text-gray-900">Admin Dashboard</h1>
+              <p className="text-xs text-gray-600">
                 Hobbies+ Beta Registrations
               </p>
             </div>
@@ -96,13 +96,13 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-3">
             <a
               href="/"
-              className="rounded-lg px-3 py-2 text-sm text-gray-400 transition-colors hover:text-white"
+              className="rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:text-gray-900"
             >
               View Site
             </a>
             <button
               onClick={handleLogout}
-              className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-300 transition-all hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400"
+              className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:border-red-400 hover:bg-red-50 hover:text-red-600"
             >
               Logout
             </button>
@@ -114,22 +114,22 @@ export default function AdminDashboard() {
         {/* Stats Cards */}
         <div className="mb-8 grid gap-4 sm:grid-cols-3">
           <div className="glass rounded-xl p-6">
-            <p className="text-sm text-gray-400">Total Registrations</p>
-            <p className="mt-1 text-3xl font-bold text-white">
+            <p className="text-sm text-gray-700">Total Registrations</p>
+            <p className="mt-1 text-3xl font-bold text-gray-900">
               {loading ? "—" : registrations.length}
             </p>
           </div>
           <div className="glass rounded-xl p-6">
-            <p className="text-sm text-gray-400">Latest Registration</p>
-            <p className="mt-1 text-lg font-semibold text-white">
+            <p className="text-sm text-gray-700">Latest Registration</p>
+            <p className="mt-1 text-lg font-semibold text-gray-900">
               {loading || registrations.length === 0
                 ? "—"
                 : formatDate(registrations[0].created_at)}
             </p>
           </div>
           <div className="glass rounded-xl p-6">
-            <p className="text-sm text-gray-400">With Name Provided</p>
-            <p className="mt-1 text-3xl font-bold text-white">
+            <p className="text-sm text-gray-700">With Name Provided</p>
+            <p className="mt-1 text-3xl font-bold text-gray-900">
               {loading
                 ? "—"
                 : registrations.filter((r) => r.name).length}
@@ -139,11 +139,11 @@ export default function AdminDashboard() {
 
         {/* Actions */}
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-white">Registrations</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Registrations</h2>
           <div className="flex gap-3">
             <button
               onClick={fetchRegistrations}
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-300 transition-all hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-50"
             >
               <svg
                 className="h-4 w-4"
@@ -163,7 +163,7 @@ export default function AdminDashboard() {
             <button
               onClick={handleExport}
               disabled={registrations.length === 0}
-              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-brand-600 to-purple-600 px-4 py-2 text-sm font-medium text-white transition-all hover:from-brand-500 hover:to-purple-500 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-brand-500/25 transition-all hover:from-brand-500 hover:to-brand-400 hover:shadow-brand-500/40 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <svg
                 className="h-4 w-4"
@@ -186,7 +186,7 @@ export default function AdminDashboard() {
         {/* Table */}
         {loading ? (
           <div className="glass flex items-center justify-center rounded-xl p-16">
-            <div className="flex items-center gap-3 text-gray-400">
+            <div className="flex items-center gap-3 text-gray-700">
               <svg
                 className="h-6 w-6 animate-spin"
                 fill="none"
@@ -211,17 +211,17 @@ export default function AdminDashboard() {
           </div>
         ) : error ? (
           <div className="glass rounded-xl p-8 text-center">
-            <p className="text-red-400">{error}</p>
+            <p className="text-red-600">{error}</p>
             <button
               onClick={fetchRegistrations}
-              className="mt-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20"
+              className="mt-4 rounded-lg bg-white px-4 py-2 text-sm text-gray-900 hover:bg-gray-50"
             >
               Retry
             </button>
           </div>
         ) : registrations.length === 0 ? (
           <div className="glass rounded-xl p-16 text-center">
-            <p className="text-lg text-gray-400">No registrations yet.</p>
+            <p className="text-lg text-gray-700">No registrations yet.</p>
             <p className="mt-2 text-sm text-gray-600">
               Share your landing page to start collecting signups.
             </p>
@@ -231,45 +231,45 @@ export default function AdminDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-white/5 bg-white/[0.02]">
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
+                  <tr className="border-b border-gray-200 bg-gray-50">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700">
                       #
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700">
                       Email
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700">
                       Registered At
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700">
                       IP
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-gray-200">
                   {registrations.map((reg, index) => (
                     <tr
                       key={reg.id}
-                      className="transition-colors hover:bg-white/[0.02]"
+                      className="transition-colors hover:bg-gray-50"
                     >
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
                         {index + 1}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-white">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                         {reg.email}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-300">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-800">
                         {reg.name || (
-                          <span className="text-gray-600">—</span>
+                          <span className="text-gray-500">—</span>
                         )}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-400">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
                         {formatDate(reg.created_at)}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
                         {reg.ip || "—"}
                       </td>
                     </tr>
