@@ -1,7 +1,5 @@
-name = "hobbies-plus"
-compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".vercel/output/static"
+# Cloudflare Pages Configuration
+# This file configures bindings for your Pages project
 
 [[d1_databases]]
 binding = "DB"
@@ -12,7 +10,3 @@ database_id = "9f521ac0-96c2-455f-87f8-ff9bc82f2fd7"
 # [[r2_buckets]]
 # binding = "R2"
 # bucket_name = "hobbies-plus-storage"
-
-[vars]
-ADMIN_PASSWORD = "change-me-in-production"
-JWT_SECRET = "change-me-to-a-random-secret-in-production"
