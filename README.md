@@ -2,6 +2,8 @@
 
 Beta registration system built with Next.js 15, TypeScript, Tailwind CSS, and Cloudflare Pages.
 
+🌐 **Live Site:** https://hobbiesplus.pages.dev
+
 ## Getting Started
 
 ### Prerequisites
