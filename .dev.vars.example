@@ -1,0 +1,5 @@
+# Copy this file to .dev.vars for local development
+# These are used by Wrangler for local dev with D1 database bindings
+
+ADMIN_PASSWORD=change-me-in-production
+JWT_SECRET=change-me-to-a-random-secret-in-production
