@@ -3,27 +3,6 @@ import RegistrationForm from "@/components/RegistrationForm";
 
 export const runtime = "edge";
 
-const features = [
-  {
-    icon: "🎨",
-    title: "Discover",
-    description:
-      "Explore new hobbies curated just for you based on your interests and personality.",
-  },
-  {
-    icon: "📊",
-    title: "Track",
-    description:
-      "Log your progress, set goals, and watch yourself grow across all your passions.",
-  },
-  {
-    icon: "🤝",
-    title: "Connect",
-    description:
-      "Join a vibrant community of hobbyists who share your interests and inspire you.",
-  },
-];
-
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -45,12 +24,6 @@ export default function HomePage() {
           </span>
         </div>
         <div className="flex items-center gap-4">
-          <a
-            href="#features"
-            className="hidden text-sm text-gray-400 transition-colors hover:text-white sm:block"
-          >
-            Features
-          </a>
           <a
             href="#register"
             className="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20"
@@ -126,43 +99,6 @@ export default function HomePage() {
               priority
             />
           </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section
-        id="features"
-        className="relative z-10 mx-auto max-w-7xl px-6 py-24"
-      >
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Everything you need to{" "}
-            <span className="gradient-text">level up</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-            Whether you&apos;re picking up a new hobby or mastering an old one,
-            Hobbies+ gives you the tools to thrive.
-          </p>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {features.map((feature, i) => (
-            <div
-              key={feature.title}
-              className="glass group rounded-2xl p-8 transition-all duration-300 hover:border-brand-500/20 hover:bg-white/[0.07]"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-brand-500/10 text-2xl transition-transform duration-300 group-hover:scale-110">
-                {feature.icon}
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-white">
-                {feature.title}
-              </h3>
-              <p className="leading-relaxed text-gray-400">
-                {feature.description}
-              </p>
-            </div>
-          ))}
         </div>
       </section>
 
