@@ -6,7 +6,7 @@ pages_build_output_dir = ".vercel/output/static"
 [[d1_databases]]
 binding = "DB"
 database_name = "hobbies-plus-db"
-database_id = "YOUR_D1_DATABASE_ID"
+database_id = "9f521ac0-96c2-455f-87f8-ff9bc82f2fd7"
 
 # Uncomment when R2 bucket is created
 # [[r2_buckets]]
