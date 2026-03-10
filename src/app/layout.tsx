@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,10 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="noise bg-grid min-h-screen antialiased">
         {children}
+        <Script
+          src="https://www.google.com/recaptcha/api.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

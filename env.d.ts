@@ -3,6 +3,7 @@ interface CloudflareEnv {
   R2: R2Bucket;
   ADMIN_PASSWORD: string;
   JWT_SECRET: string;
+  RECAPTCHA_SECRET_KEY: string;
 }
 
 // Augment @cloudflare/next-on-pages to use our env type
@@ -27,6 +28,7 @@ declare global {
     interface ProcessEnv {
       ADMIN_PASSWORD: string;
       JWT_SECRET: string;
+      NEXT_PUBLIC_RECAPTCHA_SITE_KEY: string;
     }
   }
 }

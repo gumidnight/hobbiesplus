@@ -6,21 +6,23 @@ export const runtime = "edge";
 interface RegisterBody {
   email?: string;
   name?: string;
+  recaptchaToken?: string;
 }
 
 export async function POST(request: Request) {
   try {
-    // Try to get Cloudflare env, fallback to process.env for local dev
-    let env;
+    // Try to get Cloudflare env, fallback for local dev
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let db: any = undefined;
+    let recaptchaSecret: string | undefined;
     try {
       const context = getRequestContext();
-      env = context.env;
+      db = context.env.DB;
+      recaptchaSecret = context.env.RECAPTCHA_SECRET_KEY;
     } catch {
-      // Local development fallback
-      env = process.env as any;
+      // Local development — no Cloudflare context, DB unavailable
+      recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
     }
-    
-    const db = env.DB;
 
     // Check if DB is available
     if (!db) {
@@ -51,6 +53,26 @@ export async function POST(request: Request) {
 
     const email = body.email?.trim().toLowerCase();
     const name = body.name?.trim() || null;
+    const recaptchaToken = body.recaptchaToken;
+
+    // Verify reCAPTCHA token (skip in local dev if no secret configured)
+    if (recaptchaSecret && recaptchaToken) {
+      const verifyRes = await fetch(
+        "https://www.google.com/recaptcha/api/siteverify",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `secret=${recaptchaSecret}&response=${recaptchaToken}`,
+        }
+      );
+      const verifyData = (await verifyRes.json()) as { success: boolean };
+      if (!verifyData.success) {
+        return Response.json(
+          { error: "Request blocked. Please try again." },
+          { status: 400 }
+        );
+      }
+    }
 
     // Validate email
     if (!email || !isValidEmail(email)) {
@@ -90,7 +112,7 @@ export async function POST(request: Request) {
     }
 
     return Response.json(
-      { message: "You're on the list! We'll be in touch soon. 🎉" },
+      { message: "You're on the list. We'll be in touch soon." },
       { status: 201 }
     );
   } catch (err) {
